@@ -1,0 +1,18 @@
+name: ubuntu-kde-dev
+services:
+  desktop:
+    container_name: ubuntu-kde-desktop
+    image: lscr.io/linuxserver/webtop:ubuntu-kde
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Etc/UTC
+      - SUBFOLDER=/
+      - TITLE=DevContainer Desktop
+    shm_size: "1gb"
+    volumes:
+      - ../:/config/workspace:cached
+    restart: unless-stopped
+    entrypoint: /init

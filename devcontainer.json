@@ -1,0 +1,47 @@
+{
+    "name": "Desktop Development Environment",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "desktop",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {},
+        "ghcr.io/devcontainers/features/powershell:1": {},
+        "ghcr.io/devcontainers/features/azure-cli:1": {},
+        "ghcr.io/devcontainers/features/dotnet:1": {
+            "version": "8.0"
+        }
+    },
+    "containerEnv": {
+        "PUID": "0",
+        "PGID": "0"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "pwsh",
+                "terminal.integrated.profiles.linux": {
+                    "pwsh": {
+                        "path": "/usr/bin/pwsh"
+                    }
+                }
+            },
+            "extensions": [
+                "ms-vscode.powershell",
+                "ms-dotnettools.csharp",
+                "mhutchie.git-graph"
+            ]
+        }
+    },
+    "forwardPorts": [3000, 3001],
+    "portsAttributes": {
+        "3000": {
+            "label": "Web Desktop (HTTP)",
+            "onAutoForward": "notify"
+        },
+        "3001": {
+            "label": "Web Desktop (HTTPS)",
+            "onAutoForward": "notify"
+        }
+    },
+    "workspaceFolder": "/config/workspace",
+    "overrideCommand": false
+}
